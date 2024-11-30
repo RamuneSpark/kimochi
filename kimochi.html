@@ -1,0 +1,85 @@
+<meta charset="utf-8">
+<script>
+function mark(e){
+
+const a = ["スペード","ハート","ダイヤ","クラブ"]
+
+return a[e];
+    
+}
+
+function game(){
+
+let win = 0;
+    
+let me;
+let you;
+
+    
+while(true){
+    
+me = Math.floor(Math.random() * 4);
+you = Math.floor(Math.random() * 4);
+    
+if(me === you){
+    
+    //alert("選択者："+mark(me)+"\nキャラ："+mark(you)+"\n合いました！キモチぴったり！");
+    win++;
+    
+}else{
+    
+    //alert("選択者："+mark(me)+"\nキャラ："+mark(you)+"\n合いませんでした…！むずかしい！！");
+    break;
+}
+}
+    
+    
+    //alert("キモチがあった回数："+win+"回")
+    return win
+    
+}
+
+function gameTest(){
+    
+    alert("某キモチ合わせゲームを高速でシミュレートします。")
+
+    let best = 0; //最高記録を保管します
+
+    let testTime;
+    
+    while(true){
+    testTime= prompt("何日分キモチ合わせゲームをやりますか？",365); //試行セット数
+
+        testTime = Number(testTime);
+
+        if((testTime >= 1 && testTime <= 100000000 && Number.isInteger(testTime))){
+            break;
+        }
+
+    }
+    let play; //各回の記録を伝達する変数です
+    
+    let bestTime = 1; //最高記録が何セット目かを保持します
+    
+    for(let i = 0; i < testTime; i++){
+     
+        play = game();
+        
+        if(best < play){
+            
+            best = play;
+            bestTime = i+1;
+            alert(bestTime+"日目にて記録更新！\n"+best+"回連続キモチぴったり！")
+            
+        }
+        
+    }
+    
+    
+    alert("試行日数："+testTime+"日\nキモチぴったり最高記録："+best+"回連続\n最高記録："+bestTime+"日目")
+    
+    
+};
+
+gameTest();
+</script>
